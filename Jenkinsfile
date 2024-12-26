@@ -1,7 +1,14 @@
 pipeline {
     agent any
-
+    tools {
+        git 'Default'  // Use the configured Git installation
+    }
     stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/Vignesh-Poonja/learn-jenkins-app.git', branch: 'main'
+            }
+        }
         stage('Build') {
             agent {
                 docker {
